@@ -1,0 +1,120 @@
+Editor View:
+- Scene und Game zum ansehen der Szene bzw abspielen des Spiels
+- Links Hierarchy - Textliste aller Objekte in der Szene, genestet je nach Linkung
+- Unten Project und Console zeigen Dateien in Projekt bzw Messages
+- Rechts Inspector zeigt Informationen über zurzeit selektiertes Objekt
+
+Hand-On/Tutorial:
+- Boden erstellen
+- Wand erstellen
+- Gruppieren und ziehen
+- Pille erstellen
+- Minion Bild laden
+- Create Material
+- Bild in Material Albedo, auf Pille
+- Wir wollen uns umsehen können
+- Kamera nehmen
+- In Minion rein und gruppieren
+- Neues Script - MouseLook.cs
+- Enum für die Axen
+- Public Axen um es in Editor ändern zu können
+- Warum ändern? Vielleicht erstellen wir ja einen Doom-Clone
+- FLoat var für SensVert und SensHort
+- Update code jeden Frame
+- transform für drehung. translate wäre bewegung
+- transform(x,y,z) für mouseX
+- auf minion und play
+- Transform inkrementiert, wir wollen hoch und runter jedoch beschränken
+- Also: Nicht rotate sondern winkel direkt setzen
+- _rotation für Zwischenspeicherung des Winkels
+- Clamp um ihn zwischen 2 Werte zu... clampen
+- Um direkt Winkel zu setzen benötigen wir einen Vector
+- y-Wert Beibehalten also float rotationY
+- Neuer Vektor weil transform vectoren read only sind!
+- Play -> Falsch platziert, auf Kamera ziehen nicht auf Minion
+- Für beides re-usen wir code, lol!
+- copy paste rotation für y
+- rotation y nicht mehr stationär, also wollen wir momentanen wert plus ein delta
+- delta ist einfach auf input zu holen
+- delta drauf auf die y rotation
+
+Fertiger Code:
+
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class MouseLook : MonoBehaviour {
+
+	public enum RotationAxes {
+		MouseXandY=0,
+		MouseX = 1,
+		MouseY = 2
+	
+	}
+	public RotationAxes axes = RotationAxes.MouseXandY;
+	public float sensitivityHorz = 8.0f;
+	public float sensitivityVert = 8.0f;
+	public float minimumView = -45.0f;
+	public float maximumView = 45.0f;
+
+	private float _rotation = 0;
+
+	// Use this for initialization
+	void Start () {
+		
+	}
+	
+	// Update is called once per frame
+	void Update () {
+		if (axes == RotationAxes.MouseX) {
+			transform.Rotate (0, Input.GetAxis ("Mouse X") * sensitivityHorz, 0);
+		} else if (axes == RotationAxes.MouseY) {
+			_rotation -= Input.GetAxis ("Mouse Y") * sensitivityVert;
+			_rotation = Mathf.Clamp (_rotation, minimumView, maximumView);
+
+			float rotationY = transform.localEulerAngles.y;
+
+			transform.localEulerAngles = new Vector3 (_rotation, rotationY, 0);
+		} else {
+			_rotation -= Input.GetAxis ("Mouse Y") * sensitivityVert;
+			_rotation = Mathf.Clamp (_rotation, minimumView, maximumView);
+
+			float delta = Input.GetAxis ("Mouse X") * sensitivityHorz;
+			float rotationYDelta = transform.localEulerAngles.y + delta;
+
+			transform.localEulerAngles = new Vector3 (_rotation, rotationYDelta, 0);
+
+
+		
+		
+		}
+	}
+}
+
+
+- Nun soll die Pille auch laufen
+- Input.getAxis Horizontal und vertical sind generische bezeichner für keyboard mappings
+- also, transform mit diesen Werten und zwar in Update weil soll ja kontinuuierlich passieren
+- Movement Script auf Kamera
+
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Movement : MonoBehaviour {
+
+	public float speed = 2.0f;
+
+	// Use this for initialization
+	void Start () {
+		
+	}
+	
+	// Update is called once per frame
+	void Update () {
+		float deltaX = Input.GetAxis ("Horizontal") * speed;
+		float deltaZ = Input.GetAxis ("Vertical") * speed;
+		transform.Translate (deltaX, 0, deltaZ);
+	}
+}

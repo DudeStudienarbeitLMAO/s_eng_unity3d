@@ -1,0 +1,150 @@
+\documentclass{beamer}
+\usepackage{pgfpages}
+\setbeameroption{show notes on second screen=right}
+\mode<presentation> {
+\usetheme{Antibes}
+\usecolortheme{structure}
+}
+\usepackage{graphicx}
+\graphicspath{ {pics/} }
+\usepackage{booktabs}
+\usepackage{tikz}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel} 
+
+\title[Unity3D]{ePortfolio - Unity3D}
+\author{Marcel Borrmann}
+\institute[DHBW-Ka]
+{
+Duale Hochschule Baden-Württemberg Karlsruhe \\
+\medskip
+\textit{vorstand@cduc.su}
+}
+\date{\today}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}
+\frametitle{Überblick}
+\tableofcontents
+\note{Erst trockene Fakten, später wird es interessant}
+\end{frame}
+
+\section{Unity3D}
+\subsection{Was ist das?}
+\begin{frame}
+\frametitle{Wat?}
+
+\begin{enumerate}
+	\item<1->- Cross-Platform Spiele-Engine
+	\item<2->- Verfügbar für Windows, Mac OS und GNU/Linux
+	\item<3->- Viele Zielplatformen
+	\item<4->- Nicht nur 3D!
+\end{enumerate}
+
+\note<1-2>{Erst nur osX in 2005 announced, nun für GNU/Linux, Windows, Mac OS}
+\note<3>{ Android,Android TV, Facebook Gameroom, Fire OS, Gear VR, Google Cardboard, Google Daydream, HTC Vive, iOS, Linux, macOS, Microsoft Hololens, Nintendo 3DS line, Nintendo Switch,[14]Oculus Rift, PlayStation 4, PlayStation Vita, PlayStation VR, Samsung Smart TV, Tizen, tvOS, Wii, Wii U, Windows, Windows Phone, Windows Store, WebGL, Xbox 360, and Xbox One}
+\note<4>{Seit 4.3 gegen Ende 2013 auch 2D Grafik offiziell unterstützt}
+\end{frame}
+
+\subsection{Warum Unity?}
+\begin{frame}
+\frametitle{Y?}
+\begin{enumerate}
+	\item<1->- Viel Out of the box
+	\item<2->- Visueller Workflow
+	\item<3->- Rapid iteration
+	\item<4->- Anpassbar
+	\item<5->- Viele Plattformen
+	\item<6->- Components vs. Inheritance
+\end{enumerate}
+\note<1>{- Physic simulation, normal maps,screen space ambient occlusion, dynamische Schatten...}
+\note<1>{- Das haben jedoch viele Engines, was sie nicht haben:}
+\note<2>{fast alles in visuellem Editor verankert, keine Build-Chain von Tools nötig}
+\note<3>{Schnelle Prototyp-Zyklen durch Bearbeitung direkt imt Editor, auch wenn Spiel läuft sowie IDE workflow}
+\note<4>{Editor selbst durch scripting anpassbar}
+\note<5>{Begann mit Mac, innerhalb einiger  Monate auch Windows}
+\note<5>{iPhone 2008, Android 2010, Spielekonsolen, }
+\note<6>{Enemy - mobile enemy oder stationary enemy - mobile shooter oder flying shooter}
+\note<6>{Vgl: Mobile enemy: Motion Component, Enemy Component und Mobile Shooter etc}
+\end{frame}
+\begin{frame}
+\frametitle{Y??}
+\begin{enumerate}
+	\item<1->- Viele Asset- und Dateiformate
+	\item<2->- C\#, JavaScript und Boo
+	\item<3->- Asset Store
+\end{enumerate}
+\note<1>{3ds Max, Maya, Softimage, Blender, Cinema4D, Adobe Photoshop}
+\note<2>{Js... Boo hat Python inspirierte Syntax, deprecated. c# am meisten genutzt}
+\note<3>{Fluch und Segen, Quelle für fast alles. Mehr später}
+\end{frame}
+
+\subsection{Warum nicht?}
+\begin{frame}
+\frametitle{?!}
+\begin{enumerate}
+	\item<1->- Der Editor
+	\item<2->- Kein linking v. externen Libs
+\end{enumerate}
+\note<1>{Viele Objekte in der Szene - schlechte Übersicht, mäßige Suche}
+\note<2>{Muss immer in jedes Projekt kopiert werden, ein mal schreiben, 20 mal anpassen wenn re-used}
+\end{frame}
+
+\section{Demo?}
+\begin{frame}
+\frametitle{Pray}
+	{\Huge DEMO? Vielleicht. Mal sehen!}
+\end{frame}
+
+\section{Und jetzt?}
+\begin{frame}
+	\frametitle{Installiere Gentoo}
+	\center\includegraphics[scale=0.4]<1>{cde}
+	\begin{enumerate}
+		\item<2>- Aber ich will doch gar keine Spiele entwickeln, mag aber Geld!
+		\item<3->- Ich will Spiele entwickeln aber weiß nicht wie!
+	\end{enumerate}
+\note<2>{Kein Problem, ein Asset-Flip reicht, mehr dazu gleich}
+\note<3>{Unity In Action!\\}
+\note<3>{http://gameprogrammingpatterns.com/ -> Game Programming Patterns is a collection of patterns I found in games that make code cleaner, easier to understand, and faster.\\}
+\note<3>{Kollaboriere! Spiele entwickeln ist mehr als nur Entwickeln! Game Design, Level Design -- Profitipp: werde Künstler\\}
+\end{frame}
+\begin{frame}
+\frametitle{Der Asset-Flip}
+\includegraphics<1>[scale=0.2]{pics/1497357615717}
+\note<1>{Dunkle Seite des Asset-Stores und zu offener Spieleplatformen}
+\note<1>{Je nach moralischem Kompass Warnung oder Tipp}
+\note<2>{Kennt ihr Unturned?}
+\includegraphics<2>[scale=0.2]{pics/Unturned2_Outfield}
+\note<3>{Relativ Populärer DayZ Clone, F2P}
+\includegraphics[scale=0.5]<3>{pics/unturned}
+\note<4>{Ja? Nein? Aber kennt ihr auch Day Survival Begins?}
+\includegraphics[scale=0.2]<4>{daysurvivalbegins}
+\note<5>{Was ist mit Field Z?}
+\includegraphics[scale=0.2]<5>{FieldZ}
+\note<6>{Nicht schlimm. Hey, Pixel Z auf dem Mobiltelefon!}
+\includegraphics[scale=0.7]<6>{PixelZ}
+\note<7>{Uncrowded, für 100 CS Keys zu haben, leider vom Store gelöscht}
+\includegraphics[scale=0.2]<7>{uncrowded}
+\includegraphics[scale=0.2]<8>{1497377825318}
+\note<8>{Wie kann das sein? Offensichtlich stimmt was nicht, selbes Spiel}
+\includegraphics[scale=0.4]<9>{UnitZ}
+\note<9>{\\ Kurze Suche im Asset Store fördert das hier zu Tage}
+\note<9>{\\ Since he (Unturned dev) used a free version of Unity the unity devs technically have full rights to use his code in what they want and thus UnitZ was born}
+\includegraphics[scale=0.4]<10>{thinking}
+\note<10>{Was will ich damit sagen?\\}
+\note<10>{Lest die Lizenzen oder beteiligt mich an den Profiten}
+\end{frame}
+\section{Ende}
+\begin{frame}
+\frametitle{Schön war's}
+Tschö!
+\end{frame}
+
+
+\end{document} 
